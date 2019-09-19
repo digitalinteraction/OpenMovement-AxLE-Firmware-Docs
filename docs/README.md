@@ -394,13 +394,16 @@ R: Read command.
   } Epoch_block_t;
 
 I: IMU stream on/off
+  Extended use (if supported): I <rate=50> <range=8>
+  Initial response at start of stream:
+      OP:<rate>,<range>
   Response: Streaming accel data - Raw ascii-hex data stream in format
 
           // Add streaming packet data header for time, batt, temp, count, etc... 
-          timeStamp,   // 8 chars
-          battRaw,  // 4 chars
-          tempRaw,  // 4 chars
-          accel_samples[25],  // 25 * 12 chars
+          timeStamp,   // 8 chars encoding 4 bytes
+          battRaw,  // 4 chars encoding 2 bytes
+          tempRaw,  // 4 chars encoding 2 bytes
+          accel_samples[25],  // 25 * 12 chars encoding 25 * 6 bytes
           terminator,  // "\r\n", 2 chars
           
 D: Debug
